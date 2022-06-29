@@ -18,11 +18,10 @@ function spostaDiv() {
 }*/
 
 class Movement {
-    constructor(square, width) {
+    constructor(square) {
         this.square = square;
-        this.width = window.screen.width;
         this.margin = 0;
-        this.interval = 50; //interval value 1s
+        this.interval = 500; //interval value 1s
 
     }
 
@@ -30,8 +29,9 @@ class Movement {
 
         let width = window.screen.width;
         let margin = 0;
+        let direction = 'left-to-bottom';
         setInterval(function () {
-            console.log(width);
+
             let height = window.screen.height;
 
             if (margin == width) {
@@ -40,21 +40,32 @@ class Movement {
                 let square = document.getElementById("square-div");
 
                 if (margin >= height) {
-                    square.style.marginLeft = 0 + "px";
-                    square.style.marginTop = 0 + "px";
+
+                    direction = 'right-to-top';
+                    // square.style.marginLeft = 1366 + "px";
+                    //square.style.marginTop = 768 + "px";
+                    square.style.marginLeft = 1920 + "px";
+                    square.style.marginTop = 718 + "px";
                     square.style.marginRight = margin + "px";
                     square.style.marginBottom = margin + "px";
-                }else{
+                    console.log('hello');
+                    direction = 'right-to-top';
+
+                } else {
                     square.style.marginLeft = margin + "px";
                     square.style.marginTop = margin + "px";
+                    console.log('hello 2');
+
+                    direction = 'left-to-bottom';
                 }
-
-
             }
-            margin += 10;
 
+            if (direction == 'left-to-bottom')
+                margin += 10;
+            else
+                margin -= 10;
 
-            console.log('margin '+margin+' width '+width+' height '+height);
+            console.log('margin ' + margin + ' width ' + width + ' height ' + height + ' direction ' + direction);
 
         }, this.interval);
     }
@@ -62,7 +73,5 @@ class Movement {
 
 
 let square = document.getElementById("square-div");
-let screenWidth = window.screen.width;
-
-let movementObject = new Movement(square, screenWidth);
+const movementObject = new Movement(square);
 movementObject.run();
