@@ -1,0 +1,10 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#square-div{
+    height: 100px;
+    width: 100px;
+    margin-top: 50px;
+    background: blue;
+}
